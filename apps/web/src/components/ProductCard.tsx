@@ -6,7 +6,7 @@ import { CategoryEditor } from './CategoryEditor';
 const StarIcon = Star as any;
 
 interface ProductCardProps {
-  product: Product;ß
+  product: Product;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product }) => {
