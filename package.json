@@ -1,0 +1,21 @@
+{
+  "name": "smart-product-grid",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "npm@10.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.4",
+    "prettier": "^3.0.0",
+    "turbo": "latest"
+  }
+}
