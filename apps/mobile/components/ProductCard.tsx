@@ -55,16 +55,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <Text style={tw`text-2xl font-black text-gray-900`}>
             ${product.price.toFixed(2)}
           </Text>
-
-          <TouchableOpacity
-            style={tw`bg-blue-700 w-12 h-12 rounded-2xl items-center justify-center shadow-lg active:scale-95`}
-          >
-            {isUpdating ? (
-              <ActivityIndicator color="white" size="small" />
-            ) : (
-              <ShoppingCartIcon size={24} color="white" />
-            )}
-          </TouchableOpacity>
         </View>
       </View>
     </View>

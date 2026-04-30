@@ -134,14 +134,6 @@ const MainApp = () => {
         </ScrollView>
       </View>
 
-      {/* Sync Banner */}
-      <View style={tw`px-4 py-2`}>
-        <View style={tw`bg-[#F3F0FF] rounded-xl flex-row items-center justify-center py-2 px-4`}>
-          <RotateCcwIcon size={14} color="#4F46E5" />
-          <Text style={tw`text-[#4F46E5] text-[10px] font-bold tracking-tight ml-2`}>Checking for updates...</Text>
-        </View>
-      </View>
-
       {/* Product List */}
       <FlatList
         data={displayProducts}
