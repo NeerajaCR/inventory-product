@@ -21,7 +21,7 @@ export interface StoreState {
   categories: Category[];
   searchQuery: string;
   selectedCategory: Category | null;
-  sortBy: 'price' | 'rating' | null;
+  sortBy: 'priceLowToHigh' | 'priceHighToLow' | 'highestRated' | null;
   pendingUpdates: Record<number, Partial<Product>>;
   
   // History for Undo/Redo
@@ -34,7 +34,7 @@ export interface StoreActions {
   setCategories: (categories: Category[]) => void;
   setSearchQuery: (query: string) => void;
   setSelectedCategory: (category: Category | null) => void;
-  setSortBy: (sortBy: 'price' | 'rating' | null) => void;
+  setSortBy: (sortBy: 'priceLowToHigh' | 'priceHighToLow' | 'highestRated' | null) => void;
   updateProductCategory: (productId: number, newCategory: string) => Promise<void>;
   undo: () => void;
   redo: () => void;

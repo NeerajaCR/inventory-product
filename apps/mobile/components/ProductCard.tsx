@@ -24,10 +24,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           style={tw`w-full h-full`}
           resizeMode="contain"
         />
-        
+
         {/* Category Badge */}
         <View style={tw`absolute top-4 left-4 bg-white px-3 py-1 rounded-full shadow-sm`}>
-          <Text style={tw`text-[10px] font-black uppercase text-blue-900 tracking-wider`}>
+          <Text style={tw`text-[10px] font-white uppercase text-white tracking-wider`}>
             {product.category}
           </Text>
         </View>
@@ -35,10 +35,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
       {/* Content Area */}
       <View style={tw`p-6 pb-8`}>
-        <Text style={tw`text-xl font-bold text-gray-900 mb-1`} numberOfLines={1}>
+        <Text style={tw`text-xl font-bold text-gray-900`} numberOfLines={1}>
           {product.title}
         </Text>
-        
+        <Text style={tw`text-[10px] text-gray-500 font-medium uppercase tracking-tight mb-1`}>
+          {product.category}
+        </Text>
+
         {/* Rating */}
         <View style={tw`flex-row items-center gap-1 mb-6`}>
           <StarIcon size={12} fill="#FACC15" color="#FACC15" />
@@ -52,8 +55,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <Text style={tw`text-2xl font-black text-gray-900`}>
             ${product.price.toFixed(2)}
           </Text>
-          
-          <TouchableOpacity 
+
+          <TouchableOpacity
             style={tw`bg-blue-700 w-12 h-12 rounded-2xl items-center justify-center shadow-lg active:scale-95`}
           >
             {isUpdating ? (

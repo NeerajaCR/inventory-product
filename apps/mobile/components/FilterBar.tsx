@@ -4,7 +4,22 @@ import { useProductStore } from '@smart-product-grid/shared';
 import { Search, Filter as FilterIcon } from 'lucide-react-native';
 
 export const FilterBar: React.FC = () => {
-  const { searchQuery, setSearchQuery, selectedCategory, setSelectedCategory, categories } = useProductStore();
+  const { searchQuery, setSearchQuery, selectedCategory, setSelectedCategory, categories, sortBy, setSortBy } = useProductStore();
+  const handleSortToggle = () => {
+    if (sortBy === null) {
+      setSortBy('priceLowToHigh');
+    } else if (sortBy === 'priceLowToHigh') {
+      setSortBy('highestRated');
+    } else {
+      setSortBy(null);
+    }
+  };
+
+  const getSortLabel = () => {
+    if (sortBy === 'priceLowToHigh') return 'Sort by Pricing';
+    if (sortBy === 'highestRated') return 'Sort by Rating';
+    return 'Sort by ';
+  };
 
   return (
     <View style={styles.container}>
@@ -34,6 +49,16 @@ export const FilterBar: React.FC = () => {
             <Text style={[styles.chipText, selectedCategory === cat && styles.activeChipText]}>{cat}</Text>
           </TouchableOpacity>
         ))}
+
+        {/* Sort Button */}
+        <TouchableOpacity 
+          style={[styles.categoryChip, sortBy !== null && styles.activeSortChip, { marginLeft: 16 }]}
+          onPress={handleSortToggle}
+        >
+          <Text style={[styles.chipText, sortBy !== null && styles.activeChipText]}>
+            {getSortLabel()}
+          </Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
@@ -79,6 +104,10 @@ const styles = StyleSheet.create({
   activeChip: {
     backgroundColor: '#38BDF8',
     borderColor: '#38BDF8',
+  },
+  activeSortChip: {
+    backgroundColor: '#0EA5E9',
+    borderColor: '#0EA5E9',
   },
   chipText: {
     color: '#94A3B8',

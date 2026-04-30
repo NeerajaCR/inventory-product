@@ -9,7 +9,6 @@ const AlertCircleIcon = AlertCircle as any;
 
 const App: React.FC = () => {
   const { isLoading, isError, refetch } = useProducts();
-
   const {
     products,
     searchQuery,
@@ -39,9 +38,13 @@ const App: React.FC = () => {
       result = result.filter(p => p.category === selectedCategory);
     }
 
-   if (sortBy === 'rating') {
-  result.sort((a, b) => b.rating.rate - a.rating.rate);
-}
+    if (sortBy === 'priceLowToHigh') {
+      result.sort((a, b) => a.price - b.price);
+    } else if (sortBy === 'priceHighToLow') {
+      result.sort((a, b) => b.price - a.price);
+    } else if (sortBy === 'highestRated') {
+      result.sort((a, b) => b.rating.rate - a.rating.rate);
+    }
 
     return result;
   }, [products, searchQuery, selectedCategory, sortBy]);
@@ -60,7 +63,7 @@ const App: React.FC = () => {
         <div className="text-center">
           <AlertCircleIcon className="text-red-500 mb-4" size={48} />
           <p className="text-gray-600">Something went wrong. Please try again.</p>
-          <button onClick={()=>refetch()} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+          <button onClick={() => refetch()} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
             Retry
           </button>
         </div>
@@ -69,27 +72,27 @@ const App: React.FC = () => {
   }
 
   return (
-  <div className="min-h-screen px-[2.5rem] py-[2rem] bg-gray-50">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
-          Inventory Overview
-        </h1>
-        <p className="text-sm sm:text-base text-gray-600 mt-2">
-          Manage and curate your premium collection from a single pane of glass.
-        </p>
-      </div>
+    <div className="min-h-screen px-[2.5rem] py-[2rem] bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
+            Inventory Overview
+          </h1>
+          <p className="text-sm sm:text-base text-gray-600 mt-2">
+            Manage and curate your premium collection from a single pane of glass.
+          </p>
+        </div>
 
-      <FilterBar />
+        <FilterBar />
 
-      <div className="grid gap-5 sm:gap-6 grid-cols-[repeat(auto-fit,minmax(240px,1fr))]">
-        {displayProducts.map(product => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        <div className="grid gap-5 sm:gap-6 grid-cols-[repeat(auto-fit,minmax(240px,1fr))]">
+          {displayProducts.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default App;
