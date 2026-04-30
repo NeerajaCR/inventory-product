@@ -1,13 +1,12 @@
 import { type Product } from '@smart-product-grid/shared';
-import { ShoppingCart, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 import React from 'react';
 import { CategoryEditor } from './CategoryEditor';
 
 const StarIcon = Star as any;
-const ShoppingCartIcon = ShoppingCart as any;
 
 interface ProductCardProps {
-  product: Product;
+  product: Product;ß
 }
 
 export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product }) => {
@@ -60,11 +59,6 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product }) 
         </div>
       </div>
 
-      {/* Add to Cart Button */}
-      <button className="flex items-center justify-center bg-blue-500 text-white py-2 text-sm font-medium hover:bg-blue-600 transition">
-        <ShoppingCartIcon size={16} />
-        Add to Cart
-      </button>
     </div>
   );
 });

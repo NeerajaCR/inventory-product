@@ -37,17 +37,8 @@ Centralizing business logic ensuring consistency across both platforms:
 
 ## Setup Instructions
 
-### Prerequisites
-- Node.js (v18+)
-- NPM
-- React Native CLI environment setup (for Mobile)
-
-### Installation
-1. Clone the repository.
-2. Run `npm install --legacy-peer-deps` in the root directory.
-
 ### Running the Apps
-- **Web**: `npm run dev --filter web`
+- **Web**: `npm run dev`
 - **Mobile**:
   - `cd apps/mobile`
   - Android: `npm run android`
