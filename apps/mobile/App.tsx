@@ -30,12 +30,14 @@ const LayoutGridIcon = LayoutGrid as any;
 const queryClient = new QueryClient();
 
 const MainApp = () => {
-  const { isLoading, isError } = useProducts();
-  useCategories();
+  const { data: productsResult, isLoading } = useProducts();
+  const { data: categoriesResult } = useCategories();
   
   const { 
     products, 
     categories,
+    setProducts,
+    setCategories,
     searchQuery, 
     setSearchQuery,
     selectedCategory, 
@@ -43,6 +45,14 @@ const MainApp = () => {
     sortBy, 
     applyPeriodicUpdate 
   } = useProductStore();
+
+  useEffect(() => {
+    if (productsResult) setProducts(productsResult);
+  }, [productsResult, setProducts]);
+
+  useEffect(() => {
+    if (categoriesResult) setCategories(categoriesResult);
+  }, [categoriesResult, setCategories]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -65,9 +75,9 @@ const MainApp = () => {
       result = result.filter(p => p.category === selectedCategory);
     }
 
-    if (sortBy === 'price') {
+    if (sortBy === 'priceLowToHigh') {
       result.sort((a, b) => a.price - b.price);
-    } else if (sortBy === 'rating') {
+    } else if (sortBy === 'highestRated') {
       result.sort((a, b) => b.rating.rate - a.rating.rate);
     }
 

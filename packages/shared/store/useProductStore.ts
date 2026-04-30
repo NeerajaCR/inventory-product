@@ -5,7 +5,9 @@ import _ from 'lodash';
 
 const MAX_HISTORY = 20;
 
-export const useProductStore = create<StoreState & StoreActions>((set, get) => ({
+export type ProductStore = StoreState & StoreActions;
+
+export const useProductStore = create<ProductStore>((set, get) => ({
   products: [],
   categories: [],
   searchQuery: '',

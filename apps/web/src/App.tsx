@@ -8,8 +8,8 @@ const Loader2Icon = Loader2 as any;
 const AlertCircleIcon = AlertCircle as any;
 
 const App: React.FC = () => {
-  const { isLoading: isProductsLoading, isError: isProductsError, refetch: refetchProducts } = useProducts();
-  const { isLoading: isCategoriesLoading, isError: isCategoriesError, refetch: refetchCategories } = useCategories();
+  const { data: productsResult, isLoading: isProductsLoading, isError: isProductsError, refetch: refetchProducts } = useProducts();
+  const { data: categoriesResult, isLoading: isCategoriesLoading, isError: isCategoriesError, refetch: refetchCategories } = useCategories();
 
   const isLoading = isProductsLoading || isCategoriesLoading;
   const isError = isProductsError || isCategoriesError;
@@ -17,13 +17,24 @@ const App: React.FC = () => {
     refetchProducts();
     refetchCategories();
   };
+
   const {
     products,
+    setProducts,
+    setCategories,
     searchQuery,
     selectedCategory,
     sortBy,
     applyPeriodicUpdate
   } = useProductStore();
+
+  useEffect(() => {
+    if (productsResult) setProducts(productsResult);
+  }, [productsResult, setProducts]);
+
+  useEffect(() => {
+    if (categoriesResult) setCategories(categoriesResult);
+  }, [categoriesResult, setCategories]);
 
   useEffect(() => {
     const interval = setInterval(() => {

@@ -1,34 +1,28 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { productApi } from '../api';
-import { useProductStore } from '../store/useProductStore';
+import { useProductStore, type ProductStore } from '../store/useProductStore';
 
 export const useProducts = () => {
-  const setProducts = useProductStore((state) => state.setProducts);
-  
-  return useQuery(['products'], productApi.getProducts, {
-    onSuccess: (data) => {
-      setProducts(data);
-    },
-    staleTime: Infinity, // We manage state manually via Zustand
+  return useQuery({
+    queryKey: ['products'],
+    queryFn: productApi.getProducts,
+    staleTime: Infinity,
   });
 };
 
 export const useCategories = () => {
-  const setCategories = useProductStore((state) => state.setCategories);
-  
-  return useQuery(['categories'], productApi.getCategories, {
-    onSuccess: (data) => {
-      setCategories(data);
-    },
+  return useQuery({
+    queryKey: ['categories'],
+    queryFn: productApi.getCategories,
     staleTime: Infinity,
   });
 };
 
 export const useUpdateCategory = () => {
-  const updateProductCategory = useProductStore((state) => state.updateProductCategory);
+  const updateProductCategory = useProductStore((state: ProductStore) => state.updateProductCategory);
   
-  return useMutation(
-    ({ id, category }: { id: number; category: string }) => 
-      updateProductCategory(id, category)
-  );
+  return useMutation({
+    mutationFn: ({ id, category }: { id: number; category: string }) => 
+      updateProductCategory(id, category),
+  });
 };

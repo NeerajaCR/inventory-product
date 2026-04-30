@@ -24,4 +24,9 @@ config.resolver.nodeModulesPaths = [
   path.resolve(workspaceRoot, 'node_modules'),
 ];
 
+config.resolver.extraNodeModules = {
+  'react': path.resolve(projectRoot, 'node_modules/react'),
+  '@tanstack/react-query': path.resolve(projectRoot, 'node_modules/@tanstack/react-query'),
+};
+
 module.exports = config;
