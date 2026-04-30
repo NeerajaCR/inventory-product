@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { type Product, useProductStore } from '@smart-product-grid/shared';
-import { Heart, Star, ShoppingCart } from 'lucide-react';
+import { type Product } from '@smart-product-grid/shared';
+import { Star } from 'lucide-react';
+import React from 'react';
+import { CategoryEditor } from './CategoryEditor';
 
-const HeartIcon = Heart as any;
 const StarIcon = Star as any;
-const ShoppingCartIcon = ShoppingCart as any;
 
 interface ProductCardProps {
   product: Product;
@@ -15,7 +14,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product }) 
 
   return (
     <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-      <div className=' px-[1rem] py-[1rem]'>
+      <div className='px-[1rem] py-[1rem]'>
         {/* Image */}
         <div className="relative aspect-square bg-gray-50 p-4 sm:p-5">
           <img
@@ -37,6 +36,10 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product }) 
             {product.title}
           </h3>
 
+          <div className="mt-2 flex items-center">
+            <CategoryEditor productId={product.id} currentCategory={product.category} />
+          </div>
+
           <p className="mt-2 line-clamp-3 text-sm text-gray-500">
             {product.description}
           </p>
@@ -45,22 +48,17 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product }) 
             <div className="flex items-center gap-1">
               <StarIcon className="text-yellow-400" size={16} />
               <span className="text-sm text-gray-600">
-                {product.rating.rate}
+                {product.rating.rate} ({product.rating.count} reviews)
               </span>
             </div>
-
-            <span className="text-lg font-bold text-blue-600">
+            <div className="text-lg font-bold text-blue-600">
               ${product.price.toFixed(2)}
-            </span>
+            </div>
           </div>
+
         </div>
       </div>
 
-      {/* Button */}
-      <button className="flex items-center justify-center gap-6 border-t bg-blue-600 px-4 py-[0.5rem] text-sm font-medium text-white transition hover:bg-blue-700">
-        <ShoppingCartIcon size={16} />
-        Add to Cart
-      </button>
     </div>
   );
 });

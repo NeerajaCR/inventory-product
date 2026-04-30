@@ -9,13 +9,11 @@
     "zustand": "^4.4.1"
   },
   "peerDependencies": {
-    "@tanstack/react-query": "^4.33.0",
+    "@tanstack/react-query": "^5.0.0",
     "react": ">=18"
   },
   "devDependencies": {
-    "@tanstack/react-query": "^4.33.0",
     "@types/lodash": "^4.17.24",
-    "react": "^18.2.0",
     "typescript": "^5.1.6"
   }
 }
