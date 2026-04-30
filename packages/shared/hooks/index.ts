@@ -1,7 +1,6 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import { productApi } from '../api';
 import { useProductStore } from '../store/useProductStore';
-import { type Product } from '../types';
 
 export const useProducts = () => {
   const setProducts = useProductStore((state) => state.setProducts);

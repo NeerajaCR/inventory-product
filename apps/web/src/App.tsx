@@ -1,5 +1,5 @@
 import React, { useMemo, useEffect } from 'react';
-import { useProducts, useProductStore, simulatePeriodicUpdates } from '@smart-product-grid/shared';
+import { useProducts, useCategories, useProductStore, simulatePeriodicUpdates } from '@smart-product-grid/shared';
 import { ProductCard } from './components/ProductCard';
 import { FilterBar } from './components/FilterBar';
 import { Loader2, AlertCircle } from 'lucide-react';
@@ -8,7 +8,15 @@ const Loader2Icon = Loader2 as any;
 const AlertCircleIcon = AlertCircle as any;
 
 const App: React.FC = () => {
-  const { isLoading, isError, refetch } = useProducts();
+  const { isLoading: isProductsLoading, isError: isProductsError, refetch: refetchProducts } = useProducts();
+  const { isLoading: isCategoriesLoading, isError: isCategoriesError, refetch: refetchCategories } = useCategories();
+
+  const isLoading = isProductsLoading || isCategoriesLoading;
+  const isError = isProductsError || isCategoriesError;
+  const refetch = () => {
+    refetchProducts();
+    refetchCategories();
+  };
   const {
     products,
     searchQuery,

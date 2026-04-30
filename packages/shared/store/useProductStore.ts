@@ -86,7 +86,7 @@ export const useProductStore = create<StoreState & StoreActions>((set, get) => (
   },
 
   applyPeriodicUpdate: (updatedProducts) => {
-    const { products, past, future } = get();
+    const { products } = get();
     
     // We want to update only fields like price and rating,
     // but avoid overwriting any manual changes that might be in the history or currently active.
