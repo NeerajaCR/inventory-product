@@ -16,6 +16,7 @@ import {
   useProducts, 
   useCategories,
   useProductStore, 
+  type ProductStore,
   simulatePeriodicUpdates 
 } from '@smart-product-grid/shared';
 import { ProductCard } from './components/ProductCard';
@@ -33,19 +34,17 @@ const MainApp = () => {
   const { data: productsResult, isLoading } = useProducts();
   const { data: categoriesResult } = useCategories();
   
-  const { 
-    products, 
-    categories,
-    setProducts,
-    setCategories,
-    searchQuery,
-    setSearchQuery,
-    selectedCategory, 
-    setSelectedCategory,
-    sortBy, 
-    setSortBy,
-    applyPeriodicUpdate 
-  } = useProductStore();
+  const products = useProductStore((state: ProductStore) => state.products);
+  const categories = useProductStore((state: ProductStore) => state.categories);
+  const setProducts = useProductStore((state: ProductStore) => state.setProducts);
+  const setCategories = useProductStore((state: ProductStore) => state.setCategories);
+  const searchQuery = useProductStore((state: ProductStore) => state.searchQuery);
+  const setSearchQuery = useProductStore((state: ProductStore) => state.setSearchQuery);
+  const selectedCategory = useProductStore((state: ProductStore) => state.selectedCategory);
+  const setSelectedCategory = useProductStore((state: ProductStore) => state.setSelectedCategory);
+  const sortBy = useProductStore((state: ProductStore) => state.sortBy);
+  const setSortBy = useProductStore((state: ProductStore) => state.setSortBy);
+  const applyPeriodicUpdate = useProductStore((state: ProductStore) => state.applyPeriodicUpdate);
 
   useEffect(() => {
     if (productsResult) setProducts(productsResult);
