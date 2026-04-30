@@ -9,7 +9,6 @@ export const FilterBar: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
-        <Search size={18} color="#94A3B8" style={styles.searchIcon} />
         <TextInput
           placeholder="Search products..."
           placeholderTextColor="#64748B"

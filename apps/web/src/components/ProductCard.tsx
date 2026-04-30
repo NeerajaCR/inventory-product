@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { type Product, useProductStore } from '@smart-product-grid/shared';
-import { Heart, Star, ShoppingCart } from 'lucide-react';
+import { type Product } from '@smart-product-grid/shared';
+import { ShoppingCart, Star } from 'lucide-react';
+import React from 'react';
 
-const HeartIcon = Heart as any;
 const StarIcon = Star as any;
 const ShoppingCartIcon = ShoppingCart as any;
 

@@ -1,8 +1,5 @@
 import React from 'react';
 import { useProductStore } from '@smart-product-grid/shared';
-import {  Filter } from 'lucide-react';
-
-const FilterIcon = Filter as any;
 
 export const FilterBar: React.FC = () => {
   const { searchQuery, setSearchQuery, selectedCategory, setSelectedCategory, categories } = useProductStore();
