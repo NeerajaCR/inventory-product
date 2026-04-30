@@ -38,11 +38,12 @@ const MainApp = () => {
     categories,
     setProducts,
     setCategories,
-    searchQuery, 
+    searchQuery,
     setSearchQuery,
     selectedCategory, 
     setSelectedCategory,
     sortBy, 
+    setSortBy,
     applyPeriodicUpdate 
   } = useProductStore();
 
@@ -111,14 +112,35 @@ const MainApp = () => {
         </View>
       </View>
 
-      {/* Categories */}
-      <View style={tw`py-2`}>
+      {/* Sorting & Categories */}
+      <View style={tw`py-2 gap-2`}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={tw`px-4 gap-2 flex-row`}>
+          <TouchableOpacity 
+            onPress={() => setSortBy(null)}
+            style={tw`px-4 py-2 rounded-xl flex-row items-center ${!sortBy ? 'bg-[#4F46E5]' : 'bg-[#F3F0FF]'}`}
+          >
+            <Text style={tw`font-bold text-[10px] ${!sortBy ? 'text-white' : 'text-[#4F46E5]'}`}>Newest First</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            onPress={() => setSortBy('priceLowToHigh')}
+            style={tw`px-4 py-2 rounded-xl flex-row items-center ${sortBy === 'priceLowToHigh' ? 'bg-[#4F46E5]' : 'bg-[#F3F0FF]'}`}
+          >
+            <Text style={tw`font-bold text-[10px] ${sortBy === 'priceLowToHigh' ? 'text-white' : 'text-[#4F46E5]'}`}>Price: Low to High</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            onPress={() => setSortBy('highestRated')}
+            style={tw`px-4 py-2 rounded-xl flex-row items-center ${sortBy === 'highestRated' ? 'bg-[#4F46E5]' : 'bg-[#F3F0FF]'}`}
+          >
+            <Text style={tw`font-bold text-[10px] ${sortBy === 'highestRated' ? 'text-white' : 'text-[#4F46E5]'}`}>Highest Rated</Text>
+          </TouchableOpacity>
+        </ScrollView>
+
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={tw`px-4 gap-2 flex-row border-t border-gray-50 pt-2`}>
           <TouchableOpacity 
             onPress={() => setSelectedCategory(null)}
             style={tw`px-6 py-2 rounded-full ${!selectedCategory ? 'bg-blue-700' : 'bg-[#F3F0FF]'}`}
           >
-            <Text style={tw`font-bold text-xs ${!selectedCategory ? 'text-white' : 'text-[#4F46E5]'}`}>All</Text>
+            <Text style={tw`font-bold text-xs ${!selectedCategory ? 'text-white' : 'text-[#4F46E5]'}`}>All Categories</Text>
           </TouchableOpacity>
           {categories.map((cat: string) => (
             <TouchableOpacity 
